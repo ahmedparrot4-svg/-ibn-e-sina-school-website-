@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ibn e Sina School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f6fb;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    .hero {
+      text-align: center;
+      padding: 34px 20px;
+      background: #2563eb;
+      color: #ffffff;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 2.4rem;
+    }
+    .hero p,
+    .hero .address {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.92;
+    }
+    .hero .address {
+      margin-top: 12px;
+      opacity: 0.8;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+      margin-bottom: 24px;
+    }
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    legend {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #374151;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: #111827;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .hidden {
+      display: none;
+    }
+    .message {
+      background: #e0f2fe;
+      border: 1px solid #93c5fd;
+      color: #1d4ed8;
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>Ibn e Sina School</h1>
+      <p>Welcome! Enter your name and email to continue to the school registration form.</p>
+      <p class="address">Address: Chah Malik Wala, Sahiwal, Sargodha</p>
+    </section>
+
+    <form id="entryForm" class="card">
+      <fieldset>
+        <legend>Student Entry</legend>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+
+        <button type="submit">Continue</button>
+      </fieldset>
+    </form>
+
+    <form id="schoolForm" class="card hidden">
+      <fieldset>
+        <legend>School Form</legend>
+        <label for="schoolName">School Name</label>
+        <input type="text" id="schoolName" name="schoolName" value="Ibn e Sina School" required>
+
+        <label for="schoolAddress">School Address</label>
+        <input type="text" id="schoolAddress" name="schoolAddress" value="Chah Malik Wala, Sahiwal, Sargodha" required>
+
+        <label for="grade">Grade / Year</label>
+        <select id="grade" name="grade" required>
+          <option value="">Select grade</option>
+          <option value="pg">PG</option>
+          <option value="nursery">Nursery</option>
+          <option value="kg">K.G.</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+
+        <label for="favoriteSubject">Favorite Subject</label>
+        <input type="text" id="favoriteSubject" name="favoriteSubject" placeholder="Math, Science, Arts..." required>
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Tell us about your school preferences..." required></textarea>
+
+        <button type="submit">Submit School Form</button>
+      </fieldset>
+    </form>
+
+    <div id="thankYou" class="message hidden"></div>
+  </div>
+
+  <script>
+    const entryForm = document.getElementById('entryForm');
+    const schoolForm = document.getElementById('schoolForm');
+    const thankYou = document.getElementById('thankYou');
+
+    entryForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      entryForm.classList.add('hidden');
+      schoolForm.classList.remove('hidden');
+    });
+
+    schoolForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const schoolName = document.getElementById('schoolName').value;
+      const schoolAddress = document.getElementById('schoolAddress').value;
+      const grade = document.getElementById('grade').value;
+      const favoriteSubject = document.getElementById('favoriteSubject').value;
+      const comments = document.getElementById('comments').value;
+
+      thankYou.innerHTML = `Thank you, <strong>${name}</strong>!<br>Your form has been submitted successfully.<br><br><strong>Email:</strong> ${email}<br><strong>School:</strong> ${schoolName}<br><strong>Address:</strong> ${schoolAddress}<br><strong>Grade:</strong> ${grade}<br><strong>Favorite Subject:</strong> ${favoriteSubject}<br><strong>Comments:</strong> ${comments}`;
+      thankYou.classList.remove('hidden');
+      schoolForm.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
